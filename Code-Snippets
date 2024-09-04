@@ -72,3 +72,23 @@ reportClick.Click();
             return localpath;
 
         }
+
+//Implement ExtentManager in Config file for use.
+        [OneTimeSetUp]
+        protected void OneTimeSetup()
+        {
+            extent = ExtentManager.getInstance();
+        }
+
+        [SetUp]
+        public void Setup()
+        {
+            extent = ExtentManager.getInstance();
+
+            test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            // Add categories to the ExtentTest
+            var categories = TestContext.CurrentContext.Test.Properties["Category"];
+            foreach (var category in categories)
+            {
+                test.AssignCategory(category.ToString());
+            }
