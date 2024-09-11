@@ -9,6 +9,39 @@ if (e.Count > 1)
 Assert.Fail();
 }
 
+//Nested For Loop to cycle through rows on a table to find a record then click it.
+            bool docfound = false;
+
+                IList<IWebElement> Table_Rows = driver.FindElements(By.XPath("//td[@class='dx-wrap dxgv']"));
+                int rowCount = Table_Rows.Count;
+                for (int i = 0; i < Table_Rows.Count && !docfound; i++)
+                {
+                    IList<IWebElement> cell = Table_Rows[i].FindElements(By.TagName("a"));
+
+                    for (int z = 0; z < 1; z++)
+                    {
+                        string cellText = cell[z].GetAttribute("innerHTML");
+                        Console.WriteLine(cellText);
+
+                        if (cellText.Contains(docName))
+                        {
+                            Console.WriteLine(cellText);
+                            try
+                            {
+                                Table_Rows[i].FindElement(By.TagName("a")).Click();
+                                docfound = true;
+                                break;
+                            }
+                            catch (OpenQA.Selenium.StaleElementReferenceException ex)
+                            {
+                                Table_Rows[i].FindElement(By.TagName("a")).Click();
+                            docfound = true;
+                            break;
+                            }
+                        }
+                    }
+                }
+
 //Extract URL from iFrame within an iFrame
 driver.SwitchTo().DefaultContent();
 IWebElement frame = driver.FindElement(By.ClassName("iframeit"));
