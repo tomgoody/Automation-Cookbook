@@ -1,10 +1,11 @@
+
 // Identifying if a list of Elements are available on the page
 List<IWebElement> e = new List<IWebElement>();
 e.AddRange(driver.FindElements(By.Xpath(*Xpath-Location1*)));
 e.AddRange(driver.FindElements(By.Xpath(*Xpath-Location2*)));
 if (e.Count > 1)
 {
-    Assert.Pass();
+    return;
 } else {
 Assert.Fail();
 }
