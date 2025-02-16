@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions.Interfaces;
 using System;
 
-namespace NvendorPOM.Config
+namespace vendorPOM.Config
 {
 
     //This Class is used to include the results of all tests in one file. Without it, the file will overwrite after each one leaving only the results of the final test.
